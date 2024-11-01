@@ -3,14 +3,20 @@
 
 #pragma once
 
-#define TRI_LAYER_LOWER_LAYER 2
-#define TRI_LAYER_UPPER_LAYER 3
-#define TRI_LAYER_ADJUST_LAYER 5
-
 #define SPLIT_USB_DETECT
 
+#define ENCODER_DIRECTION_FLIP
+#undef ENCODER_RESOLUTION
+#define ENCODER_RESOLUTION 4
 
 // Configure the global tapping term (default: 200ms)
 #define TAPPING_TERM 200
+
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define QUICK_TAP_TERM 0
+
+#define BOOTMAGIC_ROW 1
+#define BOOTMAGIC_COLUMN 1
+
+#define BOOTMAGIC_ROW_RIGHT 6
+#define BOOTMAGIC_COLUMN_RIGHT 1
