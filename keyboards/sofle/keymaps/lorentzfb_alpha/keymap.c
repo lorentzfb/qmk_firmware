@@ -39,6 +39,10 @@ combo_t key_combos[] = {
 #define HOME_L LT(_SYM, KC_L)
 #define HOME_SCLN RALT_T(KC_SCLN)
 
+// Aerospace window resizing
+#define WS_INC LALT(LSFT(KC_PLUS))
+#define WS_DECR LALT(LSFT(KC_MINS))
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
@@ -134,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_BUTTON] = LAYOUT(
   _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                       KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
-  _______,  KC_ESC,  KC_PSCR,   KC_ESC,  XXXXXXX, XXXXXXX,                        _______, XXXXXXX,XXXXXXX, XXXXXXX,XXXXXXX, _______,
+  _______,  KC_ESC,  KC_PSCR,   KC_ESC,  XXXXXXX, XXXXXXX,                        _______, WS_DECR, WS_INC, XXXXXXX,XXXXXXX, _______,
   _______, KC_LALT,  KC_LCTL, KC_LGUI, KC_LSFT, KC_CAPS,                       KC_LEFT, KC_DOWN, KC_UP, KC_RGHT,XXXXXXX, XXXXXXX,
   _______, LGUI(KC_Z), LGUI(KC_X), LGUI(KC_C), LGUI(KC_V), XXXXXXX,  _______,       _______, XXXXXXX, LGUI(KC_MINS), LGUI(KC_PLUS), XXXXXXX,XXXXXXX, _______,
                          _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
