@@ -51,8 +51,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef RGB_MATRIX_ENABLE
 #   define RGB_MATRIX_KEYPRESSES // reacts to keypresses
+#   define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_TYPING_HEATMAP
+#   define RGB_MATRIX_TYPING_HEATMAP_DECREASE_DELAY_MS 50
 // #   define RGB_MATRIX_KEYRELEASES // reacts to keyreleases (instead of keypresses)
-#   define RGB_MATRIX_SLEEP // turn off effects when suspended
+// #   define RGB_MATRIX_SLEEP // turn off effects when suspended
 #   define RGB_MATRIX_TIMEOUT 600000 // number of milliseconds to wait until rgb automatically turns off
 #   define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 // #   define RGB_MATRIX_LED_PROCESS_LIMIT (RGB_MATRIX_LED_COUNT + 4) / 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
