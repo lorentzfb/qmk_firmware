@@ -24,6 +24,10 @@ enum custom_keycodes {
     ARRSL, // ->
     NUMWO,
     CANCEL,
+    OS_STR,
+    // NO_AE,
+    // NO_O,
+    // NO_AA
 };
 
 // Left-hand home row mods

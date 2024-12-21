@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <stdint.h>
+#include "os_detection.h"
 #include "quantum.h"
 #include QMK_KEYBOARD_H
 #include "keymap_us.h"
@@ -26,45 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "keycodes.h"
 #include "num_word.h"
 
-
-///////////////////////////////////////////////////////////////////////////////
-// Combos (https://docs.qmk.fm/features/combo)
-///////////////////////////////////////////////////////////////////////////////
-const uint16_t caps_combo[] PROGMEM = {KC_C, KC_COMM, COMBO_END};
-
-const uint16_t combo_LBRC[] PROGMEM = {KC_C, KC_V, COMBO_END};
-const uint16_t combo_RBRC[] PROGMEM = {KC_M, KC_COMM, COMBO_END};
-
-const uint16_t combo_LCBR[] PROGMEM = {HOME_S, HOME_D, COMBO_END};
-const uint16_t combo_RCBR[] PROGMEM = {HOME_K, HOME_L, COMBO_END};
-
-const uint16_t combo_LPRN[] PROGMEM = {HOME_D, HOME_F, COMBO_END};
-const uint16_t combo_RPRN[] PROGMEM = {HOME_J, HOME_K, COMBO_END};
-
-const uint16_t combo_LABK[] PROGMEM = {KC_X, KC_C, COMBO_END};
-const uint16_t combo_RABK[] PROGMEM = {KC_COMM, KC_DOT, COMBO_END};
-
-const uint16_t combo_L_NUM[] PROGMEM = {KC_SPC, KC_ENT, COMBO_END};
-
-
-combo_t key_combos[] = {
-    COMBO(caps_combo, CW_TOGG),          // J and , => activate Caps Word.
-
-    COMBO(combo_LBRC, KC_LBRC),
-    COMBO(combo_RBRC, KC_RBRC),
-
-    COMBO(combo_LCBR, KC_LCBR),
-    COMBO(combo_RCBR, KC_RCBR),
-
-    COMBO(combo_LPRN, KC_LPRN),
-    COMBO(combo_RPRN, KC_RPRN),
-
-    COMBO(combo_LABK, KC_LABK),
-    COMBO(combo_RABK, KC_RABK),
-
-    COMBO(combo_L_NUM, NUMWO)
-};
-
+static os_variant_t host_os = OS_UNSURE;
 
 // KEYMAP
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -154,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ADJ] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      CG_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      CG_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX,  OS_STR, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -173,12 +136,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case ARRFAT:
             if (record->event.pressed) {
-                SEND_STRING("=> ");
+                SEND_STRING(" => ");
             }
             return false;
         case ARRSL:
             if (record->event.pressed) {
-                SEND_STRING("-> ");
+                SEND_STRING(" -> ");
+            }
+            return false;
+        case OS_STR:
+            if (record->event.pressed) {
+                switch (host_os) {
+                    case OS_MACOS:
+                        SEND_STRING("MAC");
+                        break;
+                    case OS_IOS:
+                        SEND_STRING("IOS");
+                        break;
+                    case OS_WINDOWS:
+                        SEND_STRING("WIN");
+                        break;
+                    case OS_LINUX:
+                        SEND_STRING("LINUX");
+                        break;
+                    case OS_UNSURE:
+                        SEND_STRING("UNSURE");
+                        break;
+                }
             }
             return false;
         case NUMWO:
@@ -189,5 +173,53 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 
+    return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Combos (https://docs.qmk.fm/features/combo)
+///////////////////////////////////////////////////////////////////////////////
+const uint16_t caps_combo[] PROGMEM = {KC_C, KC_COMM, COMBO_END};
+
+const uint16_t combo_LBRC[] PROGMEM = {KC_C, KC_V, COMBO_END};
+const uint16_t combo_RBRC[] PROGMEM = {KC_M, KC_COMM, COMBO_END};
+
+const uint16_t combo_LCBR[] PROGMEM = {HOME_S, HOME_D, COMBO_END};
+const uint16_t combo_RCBR[] PROGMEM = {HOME_K, HOME_L, COMBO_END};
+
+const uint16_t combo_LPRN[] PROGMEM = {HOME_D, HOME_F, COMBO_END};
+const uint16_t combo_RPRN[] PROGMEM = {HOME_J, HOME_K, COMBO_END};
+
+const uint16_t combo_LABK[] PROGMEM = {KC_X, KC_C, COMBO_END};
+const uint16_t combo_RABK[] PROGMEM = {KC_COMM, KC_DOT, COMBO_END};
+
+const uint16_t combo_L_NUM[] PROGMEM = {KC_SPC, KC_ENT, COMBO_END};
+
+
+combo_t key_combos[] = {
+    COMBO(caps_combo, CW_TOGG),          // J and , => activate Caps Word.
+
+    COMBO(combo_LBRC, KC_LBRC),
+    COMBO(combo_RBRC, KC_RBRC),
+
+    COMBO(combo_LCBR, KC_LCBR),
+    COMBO(combo_RCBR, KC_RCBR),
+
+    COMBO(combo_LPRN, KC_LPRN),
+    COMBO(combo_RPRN, KC_RPRN),
+
+    COMBO(combo_LABK, KC_LABK),
+    COMBO(combo_RABK, KC_RABK),
+
+    COMBO(combo_L_NUM, NUMWO)
+};
+
+
+bool process_detected_host_os_kb(os_variant_t detected_os) {
+    if (!process_detected_host_os_user(detected_os)) {
+        return false;
+    }
+
+    host_os = detected_os;
     return true;
 }
