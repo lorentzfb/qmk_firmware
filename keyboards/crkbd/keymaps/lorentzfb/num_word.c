@@ -47,19 +47,19 @@ bool process_num_word(uint16_t keycode, const keyrecord_t *record) {
     }
 
     switch (keycode) {
-        case KC_1 ... KC_0:
-        case KC_PERC:
-        case KC_COMM:
-        case KC_DOT:
-        case KC_SLSH:
-        case KC_MINS:
-        case KC_ASTR:
-        case KC_PLUS:
-        case KC_COLN:
-        case KC_EQL:
-        case KC_UNDS:
+        case NO_1 ... NO_0:
+        case NO_PERC:
+        case NO_COMM:
+        case NO_DOT:
+        case NO_SLSH:
+        case NO_MINS:
+        case NO_ASTR:
+        case NO_PLUS:
+        case NO_COLN:
+        case NO_EQL:
+        case NO_UNDS:
         case KC_BSPC:
-        case KC_X:
+        case NO_X:
         case KC_ENT:
         case XXXXXXX:
             // Don't disable for above keycodes

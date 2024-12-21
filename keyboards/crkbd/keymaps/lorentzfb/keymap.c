@@ -17,10 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <stdint.h>
+#include "keymap_norwegian.h"
 #include "os_detection.h"
 #include "quantum.h"
 #include QMK_KEYBOARD_H
 #include "keymap_us.h"
+// #include "keymap_norwegian.h"
+#include "sendstring_norwegian.h"
 #include "quantum_keycodes.h"
 #include "action_layer.h"
 
@@ -33,49 +36,49 @@ static os_variant_t host_os = OS_UNSURE;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BL] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
+       KC_TAB,    NO_Q,    NO_W,    NO_E,    NO_R,    NO_T,                         NO_Y,    NO_U,    NO_I,    NO_O,   NO_P,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,  HOME_A,  HOME_S,  HOME_D,  HOME_F,    KC_G,                         KC_H,  HOME_J,  HOME_K,  HOME_L,HOME_SCN, KC_QUOT,
+      KC_LCTL,  HOME_A,  HOME_S,  HOME_D,  HOME_F,    NO_G,                         NO_H,  HOME_J,  HOME_K,  HOME_L,HOME_SCN, NO_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     OSL(_FN),  _MED_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
+     OSL(_FN),  _MED_Z,    NO_X,    NO_C,    NO_V,    NO_B,                         NO_N,    NO_M, NO_COMM,  NO_DOT, NO_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_ESC, _BTN_BS,  KC_SPC,     KC_ENT, KC_MINS, KC_RALT
+                                           KC_ESC, _BTN_BS,  KC_SPC,    KC_ENT, NO_MINS, KC_RALT
                                       //`--------------------------'  `--------------------------'
   ),
 
   [_NOR] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______,   NO_AA,
+      _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, NO_ARNG,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______,    NO_O,   NO_AE,
+      _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, NO_OSTR,   NO_AE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, KC_QUOT,
+      _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, NO_QUOT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, KC_SCLN
+                                          _______, _______, _______,    _______, _______, NO_SCLN
                                       //`--------------------------'  `--------------------------'
   ),
 
     [_NUM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX, XXXXXXX,                      _______,    KC_J,    KC_K, KC_PERC, _______, KC_BSPC,
+      XXXXXXX, XXXXXXX, XXXXXXX, NO_CIRC, XXXXXXX, XXXXXXX,                      _______,    NO_J,    NO_K, NO_PERC, _______, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,    KC_6,    KC_4,    KC_0,    KC_2,   NUM_G,                      KC_ASTR,   KC_3,     KC_1,    KC_5,    KC_7, XXXXXXX,
+      XXXXXXX,    NO_6,    NO_4,    NO_0,    NO_2,   NUM_G,                      NO_ASTR,   NO_3,     NO_1,    NO_5,    NO_7, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, _______, KC_PLUS,    KC_8, XXXXXXX,                      XXXXXXX,   KC_9,  _______, _______, _______, XXXXXXX,
+      XXXXXXX, XXXXXXX, _______, NO_PLUS,    NO_8, XXXXXXX,                      XXXXXXX,   NO_9,  _______, _______, _______, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           CANCEL, KC_BSPC, _______,     KC_EQL, _______, KC_UNDS
+                                           CANCEL, KC_BSPC, _______,     NO_EQL, _______, NO_UNDS
                                       //`--------------------------'  `--------------------------'
   ),
 
     [_SYM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, KC_CIRC, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_PERC, XXXXXXX, KC_BSPC,
+      XXXXXXX, XXXXXXX, XXXXXXX, NO_CIRC, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, NO_PERC, XXXXXXX, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,   KC_AT, KC_TILD,  KC_DLR, KC_EXLM, XXXXXXX,                      KC_ASTR, KC_AMPR, KC_HASH, XXXXXXX, KC_PIPE,  KC_GRV,
+      XXXXXXX,   NO_AT, NO_TILD,  NO_DLR, NO_EXLM, XXXXXXX,                      NO_ASTR, NO_AMPR, NO_HASH, XXXXXXX, NO_PIPE,  NO_GRV,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, KC_PLUS,  ARRFAT, XXXXXXX,                      XXXXXXX,   ARRSL, XXXXXXX, XXXXXXX, KC_BSLS, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, NO_PLUS,  ARRFAT, XXXXXXX,                      XXXXXXX,   ARRSL, XXXXXXX, XXXXXXX, NO_BSLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, KC_BSPC, _______,     KC_EQL, _______, XXXXXXX
+                                          XXXXXXX, KC_BSPC, _______,     NO_EQL, _______, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -179,10 +182,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 ///////////////////////////////////////////////////////////////////////////////
 // Combos (https://docs.qmk.fm/features/combo)
 ///////////////////////////////////////////////////////////////////////////////
-const uint16_t caps_combo[] PROGMEM = {KC_C, KC_COMM, COMBO_END};
+const uint16_t caps_combo[] PROGMEM = {NO_C, NO_COMM, COMBO_END};
 
-const uint16_t combo_LBRC[] PROGMEM = {KC_C, KC_V, COMBO_END};
-const uint16_t combo_RBRC[] PROGMEM = {KC_M, KC_COMM, COMBO_END};
+const uint16_t combo_LBRC[] PROGMEM = {NO_C, NO_V, COMBO_END};
+const uint16_t combo_RBRC[] PROGMEM = {NO_M, NO_COMM, COMBO_END};
 
 const uint16_t combo_LCBR[] PROGMEM = {HOME_S, HOME_D, COMBO_END};
 const uint16_t combo_RCBR[] PROGMEM = {HOME_K, HOME_L, COMBO_END};
@@ -190,8 +193,8 @@ const uint16_t combo_RCBR[] PROGMEM = {HOME_K, HOME_L, COMBO_END};
 const uint16_t combo_LPRN[] PROGMEM = {HOME_D, HOME_F, COMBO_END};
 const uint16_t combo_RPRN[] PROGMEM = {HOME_J, HOME_K, COMBO_END};
 
-const uint16_t combo_LABK[] PROGMEM = {KC_X, KC_C, COMBO_END};
-const uint16_t combo_RABK[] PROGMEM = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t combo_LABK[] PROGMEM = {NO_X, NO_C, COMBO_END};
+const uint16_t combo_RABK[] PROGMEM = {NO_COMM, NO_DOT, COMBO_END};
 
 const uint16_t combo_L_NUM[] PROGMEM = {KC_SPC, KC_ENT, COMBO_END};
 
@@ -199,17 +202,17 @@ const uint16_t combo_L_NUM[] PROGMEM = {KC_SPC, KC_ENT, COMBO_END};
 combo_t key_combos[] = {
     COMBO(caps_combo, CW_TOGG),          // J and , => activate Caps Word.
 
-    COMBO(combo_LBRC, KC_LBRC),
-    COMBO(combo_RBRC, KC_RBRC),
+    COMBO(combo_LBRC, NO_LBRC),
+    COMBO(combo_RBRC, NO_RBRC),
 
-    COMBO(combo_LCBR, KC_LCBR),
-    COMBO(combo_RCBR, KC_RCBR),
+    COMBO(combo_LCBR, NO_LCBR),
+    COMBO(combo_RCBR, NO_RCBR),
 
-    COMBO(combo_LPRN, KC_LPRN),
-    COMBO(combo_RPRN, KC_RPRN),
+    COMBO(combo_LPRN, NO_LPRN),
+    COMBO(combo_RPRN, NO_RPRN),
 
-    COMBO(combo_LABK, KC_LABK),
-    COMBO(combo_RABK, KC_RABK),
+    COMBO(combo_LABK, NO_LABK),
+    COMBO(combo_RABK, NO_RABK),
 
     COMBO(combo_L_NUM, NUMWO)
 };
@@ -223,3 +226,12 @@ bool process_detected_host_os_kb(os_variant_t detected_os) {
     host_os = detected_os;
     return true;
 }
+
+const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+const key_override_t scln_override = ko_make_basic(MOD_MASK_SHIFT, NO_SCLN, NO_COLN);
+
+// This globally defines all key overrides to be used
+const key_override_t *key_overrides[] = {
+	&delete_key_override,
+	&scln_override
+};
