@@ -14,6 +14,7 @@ enum layer_names {
     _SYM,
     _BTN,
     _FN,
+    _AERO,
     _MED,
     _ADJ
 };
@@ -25,9 +26,6 @@ enum custom_keycodes {
     NUMWO,
     CANCEL,
     OS_STR,
-    // NO_AE,
-    // NO_O,
-    // NO_AA
 };
 
 // Left-hand home row mods
@@ -76,10 +74,20 @@ enum custom_keycodes {
 // Save/write
 #define SSAVE LGUI(KC_S)
 
-// Norwegian (When using US International)
-#define NO_AE LALT(KC_QUOT) // æ
-#define NO_O LALT(KC_O)     // ø
-#define NO_AA RALT(KC_A)    // å
+// Norwegian (When using EurKEY on mac/win/linux)
+#define NO_AE ALGR(KC_Q)   // æ
+#define NO_OSTR ALGR(KC_L) // ø
+#define NO_AA ALGR(KC_W)   // å
+
+// Norwegian (When using US International on mac)
+// #define NO_AE LALT(KC_QUOT) // æ
+// #define NO_O LALT(KC_O)     // ø
+// #define NO_AA RALT(KC_A)    // å
+
+// Norwegian (When using US International on windows)
+// #define NO_AE_WIN ALGR(KC_Z) // æ
+// #define NO_O_WIN ALGR(KC_L)  // ø
+// #define NO_AA_WIN ALGR(KC_W) // å
 
 // Shift-g for Vim goto line
 #define NUM_G LSFT(KC_G)
